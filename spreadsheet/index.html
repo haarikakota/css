@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.default-v2.min.css" />
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/kendo.all.min.js"></script>
+
+</head>
+
+<body>
+    <div id="example">
+        <select name="cars" id="cars">
+            <option value="0">Select Source</option>
+            <option value="1">Volvo</option>
+            <option value="2">Saab</option>
+            <option value="3">Opel</option>
+            <option value="4">Audi</option>
+        </select>
+        <div id="spreadsheet" style="width: 60%;"></div>
+
+        <script>
+            $(function () {
+                $("#spreadsheet").kendoSpreadsheet({
+                    toolbar: false,
+                    sheetsbar: false,
+                    columns: 5,
+                    sheets: [
+                        {
+                            columns: [
+                                {
+                                    width: 100,
+                                },
+                                {
+                                    width: 215
+                                },
+                                {
+                                    width: 150
+                                },
+                                {
+                                    width: 150
+                                },
+                                {
+                                    width: 150
+                                }
+                            ]
+                        }
+                    ]
+
+                });
+                $(".k-spreadsheet-formula-bar").hide();
+                $(".k-spreadsheet-column-header")[0].children[0].childNodes[0].innerHTML = "Name";
+                $(".k-spreadsheet-column-header")[0].children[1].childNodes[0].innerHTML = "Quantity";
+                $(".k-spreadsheet-column-header")[0].children[2].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                $(".k-spreadsheet-column-header")[0].children[3].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                $(".k-spreadsheet-column-header")[0].children[4].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                $("#cars").on("change", () => {
+                    $(".k-spreadsheet-column-header")[0].children[2].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                    $(".k-spreadsheet-column-header")[0].children[3].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                    $(".k-spreadsheet-column-header")[0].children[4].childNodes[0].innerHTML = $("#cars")[0].options[$("#cars")[0].selectedIndex].text;
+                })
+
+
+            });
+        </script>
+    </div>
+
+</body>
+
+</html>
